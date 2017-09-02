@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Vexflow testing playground</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+		<script src="https://unpkg.com/vexflow/releases/vexflow-debug.js"></script>
+	</head>
+	<body>
+		<div id="sheet">
+			
+		</div>
+		
+	</body>
+	<script type="text/javascript">
+		$(document).ready(function(){
+		VF = Vex.Flow;		
+		var div = document.getElementById("sheet");
+		var renderer = new VF.Renderer(div, VF.Renderer.Backends.SVG);
+		renderer.resize(500,500);
+
+		var context = renderer.getContext();
+		context.setFont("Arial", 10, "").setBackgroundFillStyle("#eed");
+
+		var stave=null;
+		var voice=null;
+		var notes=null;
+		var formatter=null;
+		
+		stave = new VF.Stave(10, 20, 75);
+
+// Add a clef and time signature.
+try{
+stave.addClef("treble").addTimeSignature("3/8");
+
+notes=[new VF.StaveNote({clef:"treble", keys:["r/4"], duration: "wr" })];
+voice = new VF.Voice({num_beats: 3,  beat_value: 8});
+voice.addTickables(notes);
+formatter = new VF.Formatter().joinVoices([voice]).format([voice], 75);
+
+// Connect it to the rendering context and draw!
+voice.draw(context, stave);
+stave.setContext(context).draw();
+}catch(e){
+	alert(e.toString());
+}
+		/*stave = new VF.Stave(10,20, 400);
+					
+						stave.addClef("treble").addTimeSignature("3/8");
+						var notes=[new VF.StaveNote({clef:"treble", keys:["b/8"], duration: "wr" }),null];voice = new VF.Voice({num_beats: 3,  beat_value: 8});
+						voice.addTickables(notes);formatter = new VF.Formatter().joinVoices([voice]).format([voice], 75);stave.setContext(context).draw();
+			stave = new VF.Stave(85,20, 400);
+					var notes=[new VF.StaveNote({clef:"treble", keys:["b/8"], duration: "wr" }),null];voice = new VF.Voice({num_beats: 3,  beat_value: 8});
+						voice.addTickables(notes);formatter = new VF.Formatter().joinVoices([voice]).format([voice], 75);voice.draw(context, stave);stave.setContext(context).draw();
+			stave = new VF.Stave(160,20, 400);
+					var notes=[new VF.StaveNote({clef:"treble", keys:["b/8"], duration: "wr" }),null];voice = new VF.Voice({num_beats: 3,  beat_value: 8});
+						voice.addTickables(notes);formatter = new VF.Formatter().joinVoices([voice]).format([voice], 75);voice.draw(context, stave);stave.setContext(context).draw();
+			stave = new VF.Stave(235,20, 400);
+					var notes=[new VF.StaveNote({clef:"treble", keys:["b/8"], duration: "wr" }),null];voice = new VF.Voice({num_beats: 3,  beat_value: 8});
+						voice.addTickables(notes);formatter = new VF.Formatter().joinVoices([voice]).format([voice], 75);voice.draw(context, stave);stave.setContext(context).draw();
+			stave = new VF.Stave(310,20, 400);
+					var notes=[new VF.StaveNote({clef:"treble", keys:["b/8"], duration: "wr" }),null];voice = new VF.Voice({num_beats: 3,  beat_value: 8});
+						voice.addTickables(notes);formatter = new VF.Formatter().joinVoices([voice]).format([voice], 75);voice.draw(context, stave);stave.setContext(context).draw();
+			stave = new VF.Stave(385,20, 400);
+					var notes=[new VF.StaveNote({clef:"treble", keys:["b/8"], duration: "wr" }),null];voice = new VF.Voice({num_beats: 3,  beat_value: 8});
+						voice.addTickables(notes);formatter = new VF.Formatter().joinVoices([voice]).format([voice], 75);voice.draw(context, stave);stave.setContext(context).draw();
+			stave = new VF.Stave(460,20, 400);
+					var notes=[new VF.StaveNote({clef:"treble", keys:["b/8"], duration: "wr" }),null];voice = new VF.Voice({num_beats: 3,  beat_value: 8});
+						voice.addTickables(notes);formatter = new VF.Formatter().joinVoices([voice]).format([voice], 75);voice.draw(context, stave);stave.setContext(context).draw();
+			stave = new VF.Stave(535,20, 400);
+					var notes=[new VF.StaveNote({clef:"treble", keys:["b/8"], duration: "wr" }),null];voice = new VF.Voice({num_beats: 3,  beat_value: 8});
+						voice.addTickables(notes);formatter = new VF.Formatter().joinVoices([voice]).format([voice], 75);voice.draw(context, stave);stave.setContext(context).draw();
+			stave = new VF.Stave(610,20, 400);
+					var notes=[new VF.StaveNote({clef:"treble", keys:["b/8"], duration: "wr" }),null];voice = new VF.Voice({num_beats: 3,  beat_value: 8});
+						voice.addTickables(notes);formatter = new VF.Formatter().joinVoices([voice]).format([voice], 75);voice.draw(context, stave);stave.setContext(context).draw();
+			stave = new VF.Stave(685,20, 400);
+					var notes=[new VF.StaveNote({clef:"treble", keys:["b/8"], duration: "wr" }),null];voice = new VF.Voice({num_beats: 3,  beat_value: 8});
+						voice.addTickables(notes);formatter = new VF.Formatter().joinVoices([voice]).format([voice], 75);voice.draw(context, stave);stave.setContext(context).draw();
+			stave = new VF.Stave(760,20, 400);
+					var notes=[new VF.StaveNote({clef:"treble", keys:["b/8"], duration: "wr" }),null];voice = new VF.Voice({num_beats: 3,  beat_value: 8});
+						voice.addTickables(notes);formatter = new VF.Formatter().joinVoices([voice]).format([voice], 75);voice.draw(context, stave);stave.setContext(context).draw();
+			stave = new VF.Stave(835,20, 400);
+					var notes=[new VF.StaveNote({clef:"treble", keys:["e/8"], duration: "q" }),new VF.StaveNote({clef:"treble", keys:["a/8"], duration: "8d" }),null];voice = new VF.Voice({num_beats: 3,  beat_value: 8});
+						voice.addTickables(notes);formatter = new VF.Formatter().joinVoices([voice]).format([voice], 75);voice.draw(context, stave);stave.setContext(context).draw();
+			stave = new VF.Stave(910,20, 400);
+					var notes=[new VF.StaveNote({clef:"treble", keys:["b/8"], duration: "wr" }),null];voice = new VF.Voice({num_beats: 3,  beat_value: 8});
+						voice.addTickables(notes);formatter = new VF.Formatter().joinVoices([voice]).format([voice], 75);voice.draw(context, stave);stave.setContext(context).draw();
+			stave = new VF.Stave(985,20, 400);
+					var notes=[new VF.StaveNote({clef:"treble", keys:["b/8"], duration: "wr" }),null];voice = new VF.Voice({num_beats: 3,  beat_value: 8});
+						voice.addTickables(notes);formatter = new VF.Formatter().joinVoices([voice]).format([voice], 75);voice.draw(context, stave);stave.setContext(context).draw();
+			stave = new VF.Stave(1060,20, 400);
+					var notes=[new VF.StaveNote({clef:"treble", keys:["c/8"], duration: "16" }).addDot(0),new VF.StaveNote({clef:"treble", keys:["d/8"], duration: "32" }),new VF.StaveNote({clef:"treble", keys:["e/8"], duration: "8d" }),new VF.StaveNote({clef:"treble", keys:["a/8"], duration: "8d" }),null];voice = new VF.Voice({num_beats: 3,  beat_value: 8});
+						voice.addTickables(notes);formatter = new VF.Formatter().joinVoices([voice]).format([voice], 75);voice.draw(context, stave);stave.setContext(context).draw();
+			stave = new VF.Stave(1135,20, 400);
+					var notes=[new VF.StaveNote({clef:"treble", keys:["b/8"], duration: "wr" }),null];voice = new VF.Voice({num_beats: 3,  beat_value: 8});
+						voice.addTickables(notes);formatter = new VF.Formatter().joinVoices([voice]).format([voice], 75);voice.draw(context, stave);stave.setContext(context).draw();
+			stave = new VF.Stave(10,120, 400);
+					var notes=[new VF.StaveNote({clef:"treble", keys:["b/8"], duration: "wr" }),null];voice = new VF.Voice({num_beats: 3,  beat_value: 8});
+						voice.addTickables(notes);formatter = new VF.Formatter().joinVoices([voice]).format([voice], 75);voice.draw(context, stave);stave.setContext(context).draw();
+			stave = new VF.Stave(85,120, 400);
+					var notes=[new VF.StaveNote({clef:"treble", keys:["d/8"], duration: "8d" }),new VF.StaveNote({clef:"treble", keys:["a/8"], duration: "8d" }),new VF.StaveNote({clef:"treble", keys:["b/8"], duration: "8d" }),null];voice = new VF.Voice({num_beats: 3,  beat_value: 8});
+						voice.addTickables(notes);formatter = new VF.Formatter().joinVoices([voice]).format([voice], 75);voice.draw(context, stave);stave.setContext(context).draw();
+			stave = new VF.Stave(160,120, 400);
+					var notes=[new VF.StaveNote({clef:"treble", keys:["f/8"], duration: "16" }).addDot(0),new VF.StaveNote({clef:"treble", keys:["g/8"], duration: "32" }),new VF.StaveNote({clef:"treble", keys:["a/8"], duration: "8d" }),new VF.StaveNote({clef:"treble", keys:["d/8"], duration: "8d" }),null];voice = new VF.Voice({num_beats: 3,  beat_value: 8});
+						voice.addTickables(notes);formatter = new VF.Formatter().joinVoices([voice]).format([voice], 75);voice.draw(context, stave);stave.setContext(context).draw();
+			stave = new VF.Stave(235,120, 400);
+					var notes=[new VF.StaveNote({clef:"treble", keys:["f/8"], duration: "8d" }),new VF.StaveNote({clef:"treble", keys:["g/8"], duration: "16" }),new VF.StaveNote({clef:"treble", keys:["f/8"], duration: "16" }),new VF.StaveNote({clef:"treble", keys:["e/8"], duration: "16" }),new VF.StaveNote({clef:"treble", keys:["d/8"], duration: "16" }),null];voice = new VF.Voice({num_beats: 3,  beat_value: 8});
+						voice.addTickables(notes);formatter = new VF.Formatter().joinVoices([voice]).format([voice], 75);voice.draw(context, stave);stave.setContext(context).draw();
+			stave = new VF.Stave(310,120, 400);
+					var notes=[new VF.StaveNote({clef:"treble", keys:["c/8"], duration: "8d" }).addDot(0),new VF.StaveNote({clef:"treble", keys:["b/8"], duration: "16" }),new VF.StaveNote({clef:"treble", keys:["a/8"], duration: "8d" }),null];voice = new VF.Voice({num_beats: 3,  beat_value: 8});
+						voice.addTickables(notes);formatter = new VF.Formatter().joinVoices([voice]).format([voice], 75);voice.draw(context, stave);stave.setContext(context).draw();
+			stave = new VF.Stave(385,120, 400);
+					var notes=[new VF.StaveNote({clef:"treble", keys:["b/8"], duration: "8r" }),new VF.StaveNote({clef:"treble", keys:["d/8"], duration: "8d" }),new VF.StaveNote({clef:"treble", keys:["d/8"], duration: "8d" }),null];voice = new VF.Voice({num_beats: 3,  beat_value: 8});
+						voice.addTickables(notes);formatter = new VF.Formatter().joinVoices([voice]).format([voice], 75);voice.draw(context, stave);stave.setContext(context).draw();
+			stave = new VF.Stave(460,120, 400);
+					var notes=[new VF.StaveNote({clef:"treble", keys:["d/8"], duration: "q" }),new VF.StaveNote({clef:"treble", keys:["d/8"], duration: "8d" }),null];voice = new VF.Voice({num_beats: 3,  beat_value: 8});
+						voice.addTickables(notes);formatter = new VF.Formatter().joinVoices([voice]).format([voice], 75);voice.draw(context, stave);stave.setContext(context).draw();
+			stave = new VF.Stave(535,120, 400);
+					var notes=[new VF.StaveNote({clef:"treble", keys:["b/8"], duration: "8r" }),new VF.StaveNote({clef:"treble", keys:["b/8"], duration: "8d" }),new VF.StaveNote({clef:"treble", keys:["e/8"], duration: "8d" }),null];voice = new VF.Voice({num_beats: 3,  beat_value: 8});
+						voice.addTickables(notes);formatter = new VF.Formatter().joinVoices([voice]).format([voice], 75);voice.draw(context, stave);stave.setContext(context).draw();
+			stave = new VF.Stave(610,120, 400);
+					var notes=[new VF.StaveNote({clef:"treble", keys:["e/8"], duration: "w" }),null];voice = new VF.Voice({num_beats: 3,  beat_value: 8});
+						voice.addTickables(notes);formatter = new VF.Formatter().joinVoices([voice]).format([voice], 75);voice.draw(context, stave);stave.setContext(context).draw();
+			stave = new VF.Stave(685,120, 400);
+					var notes=[new VF.StaveNote({clef:"treble", keys:["e/8"], duration: "w" }),null];voice = new VF.Voice({num_beats: 3,  beat_value: 8});
+						voice.addTickables(notes);formatter = new VF.Formatter().joinVoices([voice]).format([voice], 75);voice.draw(context, stave);stave.setContext(context).draw();
+			stave = new VF.Stave(760,120, 400);
+					var notes=[new VF.StaveNote({clef:"treble", keys:["e/8"], duration: "w" }),null];voice = new VF.Voice({num_beats: 3,  beat_value: 8});
+						voice.addTickables(notes);formatter = new VF.Formatter().joinVoices([voice]).format([voice], 75);voice.draw(context, stave);stave.setContext(context).draw();
+			stave = new VF.Stave(835,120, 400);
+					var notes=[new VF.StaveNote({clef:"treble", keys:["e/8"], duration: "8d" }),new VF.StaveNote({clef:"treble", keys:["d/8"], duration: "16" }),new VF.StaveNote({clef:"treble", keys:["c/8"], duration: "16" }),new VF.StaveNote({clef:"treble", keys:["b/8"], duration: "16" }),new VF.StaveNote({clef:"treble", keys:["a/8"], duration: "16" }),null];voice = new VF.Voice({num_beats: 3,  beat_value: 8});
+						voice.addTickables(notes);formatter = new VF.Formatter().joinVoices([voice]).format([voice], 75);voice.draw(context, stave);stave.setContext(context).draw();
+			stave = new VF.Stave(910,120, 400);
+					var notes=[new VF.StaveNote({clef:"treble", keys:["b/8"], duration: "8r" }),new VF.StaveNote({clef:"treble", keys:["g/8"], duration: "8d" }),new VF.StaveNote({clef:"treble", keys:["d/8"], duration: "8d" }),null];voice = new VF.Voice({num_beats: 3,  beat_value: 8});
+						voice.addTickables(notes);formatter = new VF.Formatter().joinVoices([voice]).format([voice], 75);voice.draw(context, stave);stave.setContext(context).draw();
+			stave = new VF.Stave(985,120, 400);
+					var notes=[new VF.StaveNote({clef:"treble", keys:["c/8"], duration: "q" }).addDot(0),new VF.StaveNote({clef:"treble", keys:["d/8"], duration: "8d" }),new VF.StaveNote({clef:"treble", keys:["c/8"], duration: "q" }),null];voice = new VF.Voice({num_beats: 3,  beat_value: 8});
+						voice.addTickables(notes);formatter = new VF.Formatter().joinVoices([voice]).format([voice], 75);voice.draw(context, stave);stave.setContext(context).draw();
+			stave = new VF.Stave(1060,120, 400);
+					var notes=[new VF.StaveNote({clef:"treble", keys:["d/8"], duration: "8d" }),new VF.StaveNote({clef:"treble", keys:["a/8"], duration: "8d" }),new VF.StaveNote({clef:"treble", keys:["b/8"], duration: "8d" }),null];voice = new VF.Voice({num_beats: 3,  beat_value: 8});
+						voice.addTickables(notes);formatter = new VF.Formatter().joinVoices([voice]).format([voice], 75);voice.draw(context, stave);stave.setContext(context).draw();
+			stave = new VF.Stave(1135,120, 400);
+					var notes=[new VF.StaveNote({clef:"treble", keys:["f/8"], duration: "16" }).addDot(0),new VF.StaveNote({clef:"treble", keys:["g/8"], duration: "32" }),new VF.StaveNote({clef:"treble", keys:["a/8"], duration: "8d" }),new VF.StaveNote({clef:"treble", keys:["d/8"], duration: "8d" }),null];voice = new VF.Voice({num_beats: 3,  beat_value: 8});
+						voice.addTickables(notes);formatter = new VF.Formatter().joinVoices([voice]).format([voice], 75);voice.draw(context, stave);stave.setContext(context).draw();
+			stave = new VF.Stave(10,220, 400);
+					var notes=[new VF.StaveNote({clef:"treble", keys:["b/8"], duration: "wr" }),null];voice = new VF.Voice({num_beats: 3,  beat_value: 8});
+						voice.addTickables(notes);formatter = new VF.Formatter().joinVoices([voice]).format([voice], 75);voice.draw(context, stave);stave.setContext(context).draw();
+			stave = new VF.Stave(85,220, 400);
+					var notes=[new VF.StaveNote({clef:"treble", keys:["b/8"], duration: "wr" }),null];voice = new VF.Voice({num_beats: 3,  beat_value: 8});
+						voice.addTickables(notes);formatter = new VF.Formatter().joinVoices([voice]).format([voice], 75);voice.draw(context, stave);stave.setContext(context).draw();
+			stave = new VF.Stave(160,220, 400);
+					var notes=[new VF.StaveNote({clef:"treble", keys:["d/8"], duration: "8d" }),new VF.StaveNote({clef:"treble", keys:["a/8"], duration: "8d" }),new VF.StaveNote({clef:"treble", keys:["b/8"], duration: "8d" }),null];voice = new VF.Voice({num_beats: 3,  beat_value: 8});
+						voice.addTickables(notes);formatter = new VF.Formatter().joinVoices([voice]).format([voice], 75);voice.draw(context, stave);stave.setContext(context).draw();
+					//obj.Stave(x,y,width)*/
+
+
+	});
+	</script>
+</html>
